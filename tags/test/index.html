@@ -1,27 +1,224 @@
-extends base
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>
+  
+    test · 沉风
+  
+</title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-block title
-  title= page.tag + ' | ' + config.title
-block content
-  .post
-    if config.language === ('zh-CN'||'zh-TW')
-      h1.label-title= __('reading_before')
-        i.fa.fa-biao= page.tag
-        = __('reading_after')
-    else if config.language === 'ko'
-      h1.label-title
-        i.fa.fa-biao= page.tag
-        = __('reading_label') 
-    else
-      h1.label-title= __('reading_label')
-        i.fa.fa-biao= page.tag  
-    .post-archive
-      .archive-wrap.tag-cat
-        each posts in _.groupBy(page.posts.toArray(), function(p){return -p.date.format('YYYY')})
-          ul.listing
-            for post in posts
-                li
-                  a(href=url_for(post.path), title=post.title)
-                    span.tite= post.date.format(theme.date_formats.tag) + '  '
-                      +title(post)              
-  include _partial/paginator.jade
+
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "沉风",
+        author: "chenfeng",
+        lightbox: true,
+        animate: true
+    }
+</script>
+
+
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/test/" style="font-size: 14px;">test</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">沉风</a></span>
+                
+                    <span id="subtitle">只有那些疯狂到认为自己可以改变世界的人才能真正地改变世界</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+<div class="mobile-nav"></div>
+</header>
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <div class="archive syuanpi riseIn-light" id="archive">
+        
+            <h2 class="archive-title"> 正在查看 </h2>
+            <span class="archive-name"> — test</span>
+        
+        <div class="archive-list">
+            <ul>
+        
+            
+            
+            <li class="archive-post">
+                <span class="archive-post-time">
+                
+                    2017-06-06
+                
+                </span>
+                <span class="archive-post-link">
+                    <a href="/2017/06/06/html/">富文本编辑器编辑的内容</a>
+                </span>
+            </li>
+
+        
+            </ul>
+        </div>
+    </div>
+    
+    <nav class="pagination">
+        <span class="page-number current">1</span>
+    </nav>
+
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1970 ~ 2017</span>
+        <span>❤</span>
+        <span>chenfeng</span>
+    </div>
+    <div class="theme">
+        <span>
+            动力来源于
+            <a href="http://hexo.io/" target="_blank">Hexo </a>
+        </span>
+        <span>
+            主题
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.back2top();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward()
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+</body>
+</html>

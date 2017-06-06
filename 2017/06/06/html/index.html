@@ -1,46 +1,245 @@
-extends base
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title> 富文本编辑器编辑的内容 · 沉风 </title>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-block title
-  title= page.title + ' | ' + config.title
 
-block content
-  .post
-    h1.post-title= page.title
-    .post-meta
-      span.date= page.date.format(theme.date_formats.post)
-      if page.categories.length > 0
-        span.category
-          for category in page.categories.toArray()
-            a(href=url_for(category.path))= category.name
-      if theme.busuanzi == true
-        span
-          i#busuanzi_container_page_pv
-            i#busuanzi_value_page_pv
-            i= ' ' + __('Hits')
-      if theme.comment
-        include _partial/comment_count
-        +comment-count(page.path)
-    .post-content
-      != page.content
-    include _partial/tag
-    .post-share
-      include _partial/share
-    include _partial/post_nav
-    if theme.comment
-      #comments
-        include _partial/comments
+<link rel="stylesheet" href="/style/style.css">
+<script src="/script/jquery.min.js"></script>
+<script>
+    var CONFIG = {
+        title: "沉风",
+        author: "chenfeng",
+        lightbox: true,
+        animate: true
+    }
+</script>
 
-block tocmodel
-  if theme.toc.enable == true 
-    .widget(id='toc')
-      .widget-title
-        i(class='fa fa-fei')= __('contents')
-      != toc(page.content, {list_number: theme.toc.number})
 
-block pageOnly
-  if theme.toc.enable == true 
-    script(type='text/javascript', src=url_for(theme.js) + '/toctotop.js' + '?v=' + theme.version, async)
-  else 
-    script(type='text/javascript', src=url_for(theme.js) + '/totop.js' + '?v=' + theme.version, async)
-  if theme.comment
-    include _partial/comments_js
+
+    <link rel="stylesheet" href="/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="progress">
+    <div class="progress-inner"></div>
+</div>
+    <div class="body">
+    <div class="tagcloud" id="tagcloud">
+    <div class="tagcloud-inner">
+        <a href="/tags/hexo/" style="font-size: 14px;">hexo</a> <a href="/tags/test/" style="font-size: 14px;">test</a>
+    </div>
+</div>
+    <header class="header" id="header">
+    <div class="title syuanpi tvIn">
+    <div class="table">
+        <div class="connect">
+            <div class="connect-inner">
+                <span><a href="/">沉风</a></span>
+                
+                    <span id="subtitle">只有那些疯狂到认为自己可以改变世界的人才能真正地改变世界</span>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <nav class="main-nav syuanpi tvIn">
+<div class="table">
+
+    <ul class="menu">
+        
+        
+            <li class="menu-item">
+                <a href="/">
+                    <span>文章</span>
+                    
+                        <span class="menu-item-label">article</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/archives">
+                    <span>归档</span>
+                    
+                        <span class="menu-item-label">archives</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="javascript:;" id="tags">
+                    <span>标签</span>
+                    
+                        <span class="menu-item-label">tags</span>
+                    
+                </a>
+            </li>
+        
+        
+        
+            <li class="menu-item">
+                <a href="/about">
+                    <span>关于</span>
+                    
+                        <span class="menu-item-label">about</span>
+                    
+                </a>
+            </li>
+        
+        
+    </ul>
+
+</div>
+</nav>
+<div class="mobile-nav"></div>
+</header>
+    <div class="container">
+        <main class="main" id="main">
+            
+    
+    <article class="post">
+        <header class="post-header">
+            <div class="post-time syuanpi riseIn-light back-1">
+                <span>2017年6月6日</span>
+            </div>
+            <h1 class="post-title syuanpi riseIn-light back-2">
+            
+                富文本编辑器编辑的内容
+            
+            </h1>
+            
+                
+                    <div class="post-tags syuanpi riseIn-light back-3">
+                    
+                        <a href="/tags/test/">test</a>
+                    
+                    </div>
+                
+            
+        </header>
+        <div class="post-content syuanpi riseIn-light back-3">
+            
+                <p><ul style="list-style-type: none;" class=" list-paddingleft-2"><br>    <li><br>        <h3 class="intro-feature-title" style="box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 24px; vertical-align: baseline; color: rgb(14, 131, 205);"><br>            Blazing Fast<br>        </h3><br>        <p class="intro-feature-desc" style="box-sizing: inherit; margin-top: 1.6em; margin-bottom: 1.6em; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; line-height: 1.6em;"><br>            Node.js brings you incredible generating speed. Hundreds of files take only seconds to build.<br>        </p><br>    </li><br>    <li><br>        <p><br>            <span class="fa fa-pencil" style="box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; transform: translate(0px, 0px);"></span><br>        </p><br>        <h3 class="intro-feature-title" style="box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 24px; vertical-align: baseline; color: rgb(14, 131, 205);"><br>            Markdown Support<br>        </h3><br>        <p class="intro-feature-desc" style="box-sizing: inherit; margin-top: 1.6em; margin-bottom: 1.6em; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; line-height: 1.6em;"><br>            All features of GitHub Flavored Markdown are supported. You can even use most Octopress plugins in Hexo.<br>        </p><br>    </li><br>    <li><br>        <p><br>            <span class="fa fa-cloud-upload" style="box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; transform: translate(0px, 0px);"></span><br>        </p><br>        <h3 class="intro-feature-title" style="box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 24px; vertical-align: baseline; color: rgb(14, 131, 205);"><br>            One-Command Deployment<br>        </h3><br>        <p class="intro-feature-desc" style="box-sizing: inherit; margin-top: 1.6em; margin-bottom: 1.6em; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; line-height: 1.6em;"><br>            You only need one command to deploy your site to GitHub Pages, Heroku or other sites.<br>        </p><br>    </li><br>    <li><br>        <p><br>            <span class="fa fa-cog" style="box-sizing: inherit; display: inline-block; font-stretch: normal; line-height: 1; font-family: FontAwesome; font-size: inherit; text-rendering: auto; -webkit-font-smoothing: antialiased; transform: translate(0px, 0px);"></span><br>        </p><br>        <h3 class="intro-feature-title" style="box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: Lato, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 24px; vertical-align: baseline; color: rgb(14, 131, 205);"><br>            Various Plugins<br>        </h3><br>        <p class="intro-feature-desc" style="box-sizing: inherit; margin-top: 1.6em; margin-bottom: 1.6em; padding: 0px; border: 0px; outline: 0px; font-weight: inherit; font-style: inherit; font-family: inherit; vertical-align: baseline; line-height: 1.6em;"><br>            Hexo has a powerful plugin system. You can install more plugins for Jade, CoffeeScript plugins.<br>        </p><br>    </li><br>    <li><br>        <p><br>            npm install hexo-cli -g<br>        </p><br>    </li><br>    <li><br>        <p><br>            hexo init blog<br>        </p><br>    </li><br>    <li><br>        <p><br>            cd blog<br>        </p><br>    </li><br>    <li><br>        <p><br>            npm install<br>        </p><br>    </li><br>    <li><br>        <p><br>            hexo server<br>        </p><br>    </li><br></ul></p>
+<p><br>    <br><br></p>
+            
+        
+        </div>
+        
+            
+            
+        
+    </article>
+    
+        
+    <nav class="article-page">
+        
+            <a href="/2017/06/06/hexo 入门/" id="art-left" class="art-right">
+                <span class="next-title">
+                    Hexo搭建个人博客<i class="iconfont icon-right"></i> 
+                </span>
+            </a>
+        
+        
+            <a href="/2017/06/02/hello-world1/" id="art-right" class="art-left">
+                <span class="prev-title"> 
+                    <i class="iconfont icon-left"></i>Hexo 开启之路
+                </span>
+            </a>
+        
+    </nav>
+
+        
+    
+
+
+        </main>
+        <footer class="footer syuanpi fadeIn" id="footer">
+    <hr>
+    <div class="footer-wrapper">
+        <div class="left">
+            <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+        </div>
+        <div class="right">
+            <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>1970 ~ 2017</span>
+        <span>❤</span>
+        <span>chenfeng</span>
+    </div>
+    <div class="theme">
+        <span>
+            动力来源于
+            <a href="http://hexo.io/" target="_blank">Hexo </a>
+        </span>
+        <span>
+            主题
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+        </div>
+    </div>
+</footer>
+    </div>
+    <script src="/script/nlvi.js"></script>
+
+    <script src="/lightbox/js/lightbox.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    document.body.addEventListener('touchstart', function () {});
+    $('.progress').hide();
+    $('.body').show();
+    Nlvi.tagcloud();
+    Nlvi.back2top();
+    Nlvi.showToc();
+    Nlvi.showComments();
+    Nlvi.showReward()
+
+    !CONFIG.animate && Nlvi.offAnimate();
+    CONFIG.lightbox && Nlvi.onPicBox();
+})
+</script>
+    </div>
+    
+        
+    
+    <div class="backtop syuanpi dead toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+</body>
+</html>
